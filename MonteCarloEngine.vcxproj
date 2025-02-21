@@ -127,11 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GBM.cpp" />
     <ClCompile Include="MCEngine.cpp" />
     <ClCompile Include="MonteCarloEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GBM.h" />
     <ClInclude Include="MCEngine.h" />
+    <ClInclude Include="Model.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
