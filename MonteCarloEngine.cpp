@@ -3,12 +3,25 @@
 
 #include "MCEngine.h"
 #include "GBM.h"
+#include "EuropeanOptionPayoff.h"
 #include <iostream>
-
+#include <cmath>
+#include <chrono>
 int main()
 {
-   
-    std::cout << "Hello World!\n";
+    GBM gbm(0.2, 0.3);
+    EuropeanOptionPayoff payoff(105, 365, EuropeanOptionPayoff::CallPut::Call);
+    MCEngine<GBM, EuropeanOptionPayoff> mcEngine(gbm, payoff, 100000);
+
+    auto t1 = std::chrono::high_resolution_clock::now();
+    double price = mcEngine.Price();
+    auto t2 = std::chrono::high_resolution_clock::now();
+
+    auto ms_int = duration_cast<std::chrono::milliseconds>(t2 - t1);
+
+    std::cout << "Time taken " << ms_int << '\n';
+       
+    std::cout << "Price " << price * std::exp(-0.2);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

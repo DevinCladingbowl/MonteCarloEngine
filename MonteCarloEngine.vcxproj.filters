@@ -29,10 +29,10 @@
     <ClInclude Include="MCEngine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Model.h">
+    <ClInclude Include="GBM.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="GBM.h">
+    <ClInclude Include="EuropeanOptionPayoff.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
