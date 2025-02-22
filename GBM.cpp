@@ -1,6 +1,7 @@
 #include "GBM.h"
 #include <cmath>
-double GBM::Evolve(double currPrice, double dt, double innov)
+std::pair<double, double> GBM::Evolve(std::pair<double, double> currState, double dt, double spotInnov, double volInnov)
 {
-	return currPrice * std::exp((r_ - 0.5 * vol_ * vol_) * dt + vol_ * innov * std::sqrt(dt));
+	double newSpot = currState.first * std::exp((r_ - 0.5 * vol_ * vol_) * dt + vol_ * spotInnov * std::sqrt(dt));
+	return { newSpot, vol_ };
 }

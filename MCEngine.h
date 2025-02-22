@@ -3,11 +3,12 @@
 #include <random>
 #include <cmath>
 #include <concepts>
+#include <utility>
 
 // MODEL CONCEPTS - Each model that uses the MCEngine must implement the below
 template <class Model>
-concept HasEvolve = requires(Model model, double spot, double dt, double innov) {
-	{ model.Evolve(spot, dt, innov) } -> std::convertible_to<double>;
+concept HasEvolve = requires(Model model, std::pair<double, double> currState, double dt, double spotInnov, double volInnov) {
+	{ model.Evolve(currState, dt, spotInnov, volInnov) } -> std::convertible_to<std::pair<double, double>>;
 };
 
 template <class Model>
@@ -30,7 +31,7 @@ concept HasGetMaturity = requires(Payoff payoff) {
 	{ payoff.GetMaturity() } -> std::convertible_to<int>;
 };
 
-// COMBINED MODEL CONCEPTS
+// COMBINED PAYOFF CONCEPTS
 template <class Payoff>
 concept ValidPayoff = HasGetPayoff<Payoff> && HasGetMaturity<Payoff>;
 

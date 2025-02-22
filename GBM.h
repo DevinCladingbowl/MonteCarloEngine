@@ -1,5 +1,5 @@
 #pragma once
-
+#include <utility>
 
 //Geometric Brownian Motion - Models underlying asset according to
 /*
@@ -11,11 +11,11 @@ class GBM
 public:
 	GBM(double rate, double vol) : r_(rate), vol_(vol) { ; }
 
-	double Evolve(double currPrice, double dt, double innov);
+	std::pair<double,double> Evolve(std::pair<double, double> currState, double dt, double spotInnov, double volInnov); // Doesn't actually use volInnov.
 
 	bool IsStochasticVol() { return false; }
 private:
-	double r_;
-	double vol_;
+	double r_;       // Risk-free rate
+	double vol_;     // Constant vol
 
 };
